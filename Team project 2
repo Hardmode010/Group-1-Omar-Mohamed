@@ -1,0 +1,91 @@
+# This a simple code to calculate your loan information and to check if your input is correct
+INTEREST_RATE = 1.68
+#This is an input for the user name
+
+#Now we add a function
+#This is an input for the user name
+import string
+upper = string.ascii_uppercase
+Cond = False #Cond is a variable that contains False 
+#Now we add a function
+def validate():
+    import string
+upper = string.ascii_uppercase
+Cond = False #Cond is a variable that contains False
+while True:
+        name = input("ما هو اسمك؟ ادخل احرف صغيرة فقط : ")
+        if len(name) <3 or len(name)>10:
+            print("الرجاء ادخال الاسم بصيغه صحيحة \n")
+            continue
+        for char in name:
+            if char in upper:
+                Cond = True
+                break
+        if Cond == True:
+            print("الرجاء ادخال الاسم باحرف صغيرة \n")
+            continue
+        else:
+            print("تم تسجيل الاسم بنجاح \n")
+            break
+
+validate()
+
+
+
+# Now we will ask for a specific age range   
+while True:
+    age = int(input("العمر :"))
+    if age<18 or age>=65:
+        print("السن غير مطابق \n")
+    else:
+        print("تم تسجيل العمر بنجاح \n")
+        break
+#Now I will ask the user for their credit score if it is valid or not
+def credit_Score():  #here I am creating a function to call it at anytime
+    while True:
+        credit_Score = int(input("ما هو تقيم الكريدت :"))
+        if credit_Score <680:
+            print("انت تحتاج الي ضامن \n")
+        else:
+            print("تم التسجيل بنجاح\n")
+            break
+credit_Score()
+#Getting input from the user how much does he need for a loan
+while True:
+    loan_Amount = float(input("المبلغ المراض اقتراضه :"))
+    if loan_Amount >10000:
+        print("البنك لا يسمح بقروض فوق 10000 $ الرجاء ادخال ال المبلغ مرة اخري: \n ")
+    else:
+        print("تم التسجيل بنجاح\n")
+        break
+
+#asking for the anuual rate
+
+while True:
+    rate = float(input("ادخل النسبة التي تود دفعها: "))
+    if rate >5 or rate < 1.5:
+        print("الرجاء ادخال النسبة ما بين 1.5 الي 5 \n")
+    else:
+        print("تم التسجيل بنجاح\n")
+        break
+
+
+#how many years it will take?
+while True:
+    m_Years = float(input("كم عدد السنوات التي تود دفع القرض بها؟ :"))
+    if m_Years >=5 or m_Years <1:
+        print("القرض يسمح ما بين سنة الي خمس سنوات ادخل السنوات مجددا \n")
+    else:
+        print("تم التسجيل بنجاح\n")
+        break
+        
+
+#payments rate 
+p_rate = rate /12 / 100
+#rate percentage * 12
+num_of_payments = m_Years * 12
+#calculating the payment and excuting 
+payment_amount = p_rate * loan_Amount / (1 - (1 + p_rate) ** - num_of_payments)
+total = num_of_payments * payment_amount - loan_Amount 
+print("هذا هو المبلغ الذي سوف يتم دفعة$" + format(payment_amount, ",.2f"), "شهريا.\n")
+print("هذا هو المبلغ الذي سوف يتم دفعة في النهاية$" + format(total + INTEREST_RATE,",.2f"), ".")
